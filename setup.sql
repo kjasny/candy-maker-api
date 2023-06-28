@@ -1,8 +1,8 @@
 CREATE DATABASE candies;
 
-CREATE USER 'candies'@'localhost' IDENTIFIED BY 'C4nd13$!';
+CREATE USER 'candies'@'%' IDENTIFIED BY 'C4nd13$!';
 
-GRANT ALL ON candies.* TO 'candies'@'localhost';
+GRANT ALL ON candies.* TO 'candies'@'%';
 
 USE candies;
 
