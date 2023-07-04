@@ -4,7 +4,10 @@
   "description": "## Part One Instructions In the initial commit of this project you were provided with the SQL to create a database of candies with their manufacturers. Working in a branch called `part-one-answer`, your task is to implement an Express driven REST API that allows a user to retrieve this data. Your API should support the routes listed below, pulling the data from the database via Sequelize models.",
   "main": ".eslintrc.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "env-cmd nodemon index.js",
+    "dev:migrate:up": "env-cmd sequelize db:migrate --env development --config ./configs/sequelize.js",
+    "dev:migrate:undo": "env-cmd sequelize  db:migrate:undo --env development --config ./configs/sequelize.js",
+    "dev:migrate:destroy": "env-cmd sequelize  db:migrate:undo:all --env development --config ./configs/sequelize.js",
     "lint:fix": "./node_modules/.bin/eslint --fix --format codeframe ."
   },
   "keywords": [],
@@ -17,6 +20,8 @@
     "sequelize": "^6.32.1"
   },
   "devDependencies": {
-    "eslint": "^8.43.0"
+    "env-cmd": "^10.1.0",
+    "eslint": "^8.43.0",
+    "sequelize-cli": "^6.6.1"
   }
 }
