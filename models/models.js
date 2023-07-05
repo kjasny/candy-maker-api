@@ -1,41 +1,54 @@
 const models = require('.')
+const Sequelize = require('sequelize')
 
 const getAllManufacturersWithProducts = async () => {
-    try{const allManufacturers = await models.ManufacturersModel.findAll({ include: { model: models.ProductsModel }})
+  try { const allManufacturers = await models.ManufacturersModel.findAll({ include: { model: models.ProductsModel } })
 
     return allManufacturers
-} catch(error){
+  } catch (error) {
     console.log(error)
-}
+  }
 }
 
-const getManufacturerByIdWithProducts = async (id) => {
-    try{const foundManufacturer = await models.ManufacturersModel.findOne({ where: { id }, 
-        include: [{ model: models.ProductsModel }]})
+const getManufacturerByNameWithProducts = async (name) => {
+  try { const foundManufacturer = await models.ManufacturersModel.findOne({
+    where: { name: { [Sequelize.Op.like]: `%${name}%` } },
+    attributes: ['id', 'name', 'country'],
+    include: [{
+      model: models.ProductsModel,
+      attributes: ['id', 'name', 'yearIntroduced']
+    }]
+  })
 
-    return foundManufacturer
-    } catch(error){
-        console.log(error)
-    }
+  return foundManufacturer
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 const getAllProductsWithManufacturers = async () => {
-    try{const allProducts = await models.ProductsModel.findAll({ include: { model: models.ManufacturersModel }})
+  try { const allProducts = await models.ProductsModel.findAll({ include: { model: models.ManufacturersModel } })
 
     return allProducts
-} catch(error){
+  } catch (error) {
     console.log(error)
-}
-}
-
-const getProductByIdWithManufacturer = async (id) => {
-    try{const foundProduct = await models.ProductsModel.findOne({ where: { id }, 
-        include: [{ model: models.ManufacturersModel }]})
-
-    return foundProduct
-    } catch(error){
-        console.log(error)
-    }
+  }
 }
 
-module.exports = { getAllManufacturersWithProducts, getManufacturerByIdWithProducts, getAllProductsWithManufacturers, getProductByIdWithManufacturer }
+const getProductByNameWithManufacturer = async (name) => {
+  try { const foundProduct = await models.ProductsModel.findOne({
+    where: { name: { [Sequelize.Op.like]: `%${name}%` } },
+    attributes: ['id', 'name', 'yearIntroduced'],
+    include: [{
+      model: models.ManufacturersModel,
+      attributes: ['id', 'name', 'country']
+    }]
+  })
+
+  return foundProduct
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+module.exports = { getAllManufacturersWithProducts, getManufacturerByNameWithProducts, getAllProductsWithManufacturers, getProductByNameWithManufacturer }

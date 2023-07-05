@@ -1,23 +1,23 @@
-const { getAllProductsWithManufacturers, getProductByIdWithManufacturer } = require('../models/models')
+const { getAllProductsWithManufacturers, getProductByNameWithManufacturer } = require('../models/models')
 
 const getAllProductsWithManufacturersController = async (request, response) => {
-    try{const allProducts = await getAllProductsWithManufacturers()
+  try { const allProducts = await getAllProductsWithManufacturers()
 
     return response.send(allProducts)
-    } catch(error){
-        return response.sendStatus(500)
-    }
+  } catch (error) {
+    return response.sendStatus(500)
+  }
 }
 
-const getProductByIdWithManufacturerController = async (request, response) => {
-    try{const { id } = request.params
-    
-    const foundProduct = await getProductByIdWithManufacturer(id)
+const getProductByNameController = async (request, response) => {
+  try { const { name } = request.params
+
+    const foundProduct = await getProductByNameWithManufacturer(name)
 
     return foundProduct ? response.send(foundProduct) : response.sendStatus(404)
-} catch(error){
+  } catch (error) {
     return response.sendStatus(500)
-}
+  }
 }
 
-module.exports = { getAllProductsWithManufacturersController, getProductByIdWithManufacturerController }
+module.exports = { getAllProductsWithManufacturersController, getProductByNameController }
