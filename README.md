@@ -1,158 +1,28 @@
 # Candy Maker API
 
 ## Part One Instructions
-In the initial commit of this project you were provided with the SQL to create a database of candies with their manufacturers. Working in a branch called `part-one-answer`, your task is to implement an Express driven REST API that allows a user to retrieve this data. Your API should support the routes listed below, pulling the data from the database via Sequelize models.
+In the initial commit of this project you have been provided with an API server. In a new branch called `part-one-answer`, your task is to create a React app in a client folder of this repo, and integrate the Express and React app following the standards we went over in class.
 
-## Requests and Expected Respones
+Specifically:
+- Your API should remain in the root directory.
+- Your React site should live in the `/client` folder and should have it's own `package.json`.
+- Use scripts in your `package.json` to start, build, and test your React app by moving into the client folder.
+- Use scripts in your `package.json` to run the backend and frontend at the same time.
+- Change your backend to serve the `build` folder in your `client` folder.
+- The React site should be a simple site as shown below with a title, and an input box that updates a string under the box. Use components as outlined last week.
+- Verify your React site is viewable using both localhost:1337 (express backend) and localhost:3000 (create-react-app)
 
-### Get All Manufacturers with their products
-
-**GET** http://localhost:1337/manufacturers
-
-**Response**
-```JSON
-[{
-  id: 1,
-  name: "August Storck KG",
-  country: "DE",
-  createdAt: "2020-04-02T15:48:14.000Z",
-  updatedAt: "2020-04-02T15:48:14.000Z",
-  deletedAt: null,
-  products: [{
-    id: 1,
-    name: "Mamba",
-    yearIntroduced: "1953-01-01",
-    manufacturerId: 1,
-    createdAt: "2020-04-02T15:48:14.000Z",
-    updatedAt: "2020-04-02T15:48:14.000Z",
-    deletedAt: null
-  }],
-},
-... all other manufacturers
-]
-```
-
-### Get a Manufacturer with their products by their Id
-
-**GET** http://localhost:1337/manufacturers/16
-
-**Response**
-```JSON
-{
-  id: 16,
-  name: "Zeta Espacial S.A.",
-  country: "ES",
-  createdAt: "2020-04-02T15:48:14.000Z",
-  updatedAt: "2020-04-02T15:48:14.000Z",
-  deletedAt: null,
-  products: [{
-    id: 69,
-    name: "Pop Rocks",
-    yearIntroduced: "1956-01-01",
-    manufacturerId: 16,
-    createdAt: "2020-04-02T15:48:17.000Z",
-    updatedAt: "2020-04-02T15:48:17.000Z",
-    deletedAt: null
-  }]
-}
-```
-
-### Get All Product with their manufacturers
-
-**GET** http://localhost:1337/products
-
-**Response**
-```JSON
-[{
-  id: 1,
-  name: "Mamba",
-  yearIntroduced: "1953-01-01",
-  manufacturerId: 1,
-  createdAt: "2020-04-02T15:48:14.000Z",
-  updatedAt: "2020-04-02T15:48:14.000Z",
-  deletedAt: null,
-  manufacturer: {
-    id: 1,
-    name: "August Storck KG",
-    country: "DE",
-    createdAt: "2020-04-02T15:48:14.000Z",
-    updatedAt: "2020-04-02T15:48:14.000Z",
-    deletedAt: null
-  }
-},
-... all other products
-]
-```
-
-### Get a Product with its manufacturer by its Id
-
-**GET** http://localhost:1337/products/26
-
-**Response**
-```JSON
-{
-  id: 26,
-  name: "Bonkers",
-  yearIntroduced: "1985-01-01",
-  manufacturerId: 7,
-  createdAt: "2020-04-02T15:48:15.000Z",
-  updatedAt: "2020-04-02T15:48:15.000Z",
-  deletedAt: null,
-  manufacturer: {
-    id: 7,
-    name: "Nabisco",
-    country: "US",
-    createdAt: "2020-04-02T15:48:14.000Z",
-    updatedAt: "2020-04-02T15:48:14.000Z",
-    deletedAt: null
-  }
-}
-```
+![image](./part1.gif)
 
 ## Part Two Instructions
-In a branch called `part-two-answer`, continuing from `part-one-answer`, your task is to create two migrations. The first should create all needed tables for this project. The second should add all data for this project into those tables.  All existing routes should continue to work and the `setup.sql` should no longer be needed.
+Continuing from your `part-one-answer` branch, in a new branch called `part-two-answer`, your task is to create a React page that retrieves a list of Candy manufacturers from the API and displays them on the screen. This page should also have a search box that updates the list of manufacturers displayed to only those whose name matches the search term typed by the user.
+
+![image](./part2.gif)
 
 ## Part Three Instructions
-In a branch called `part-three-answer`, continuing from `part-two-answer`, your task is to update the existing routes to support the specification laid out below.
+Continuing from your `part-two-answer` branch, in a new branch called `part-three-answer`, your task is to create a multi-page React application. Each manufacturer on the existing page should be a link to a page which displays all of the products made by that manufacturer. Put each component in it's own folder with an matching CSS file.
 
-## Requests and Expected Respones
+![image](./part3.gif)
 
-### UNCHANGED: Get All Manufacturers with their products
-
-### Get a Manufacturer with their products by their ~~id~~ name (case-insensitive fuzzy match)
-
-**GET** http://localhost:1337/manufacturers/zeta
-
-**Response**
-```JSON
-{
-  id: 16,
-  name: "Zeta Espacial S.A.",
-  country: "ES",
-  products: [{
-    id: 69,
-    name: "Pop Rocks",
-    yearIntroduced: "1956-01-01",
-  }]
-}
-```
-
-### UNCHANGED: Get All Product with their manufacturers
-
-### Get a Product with its manufacturer by its ~~id~~ name (case-insensitive fuzzy match)
-
-**GET** http://localhost:1337/products/bonk
-
-**Response**
-```JSON
-{
-  id: 26,
-  name: "Bonkers",
-  yearIntroduced: "1985-01-01",
-  manufacturer: {
-    id: 7,
-    name: "Nabisco",
-    country: "US",
-  }
-}
-```
+## Part Four Instructions
+Continuing from your `part-three-answer` branch, in a new branch called `part-four-answer`, your task is to create a test suite that contains unit tests for each of the components used in your application.
