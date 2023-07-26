@@ -7,7 +7,7 @@ const ManufacturersList = (props) => {
     const renderManufacturers = manufacturers.map((manufacturer) => {
         return (
 
-          <div><Link to={`/manufacturers/${manufacturer.name}`}> {manufacturer.name} ({manufacturer.country}) </Link> </div>
+          <div key={manufacturer.id}><Link to={`/manufacturers/${manufacturer.name}`}> {manufacturer.name} ({manufacturer.country}) </Link> </div>
         )
     })
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Search from "../../components/Search";
-import ManufacturersList from "../../components/ManufacturersList";
+import Search from "../../components/Search/Search";
+import ManufacturersList from "../../components/ManufacturersList/ManufacturersList";
 
 function CandyMaker() {
   const [search, setSearch] = useState("");
